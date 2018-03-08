@@ -7,7 +7,10 @@ django-print-sql is an easy-to-use SQL debug tool for Django developers to print
 Requirements
 ------------
 
-You need to have django installed (obviously). I've tried it on Django 1.11.11 and 2.0.3
+You need to have django installed (obviously).
+
+I've tried it on Django 1.11.11 and 2.0.3.
+
 If sqlparse is installed, the SQL statement wil be formatted.
 
 Install
