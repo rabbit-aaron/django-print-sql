@@ -15,7 +15,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='django-print-sql',  # Required
-    version='2018.3',  # Required
+    version='2018.3.3',  # Required
     description='django_print_sql is an easy-to-use SQL debug tool for Django developers to print SQL statements',  # Required
     long_description=long_description,  # Optional
     url='https://github.com/rabbit-aaron/django_print_sql',  # Optional
@@ -34,8 +34,4 @@ setup(
     ],
     keywords='django sql debug',  # Optional
     packages=find_packages(),  # Required
-    project_urls={  # Optional
-        'Bug Reports': 'https://github.com/rabbit-aaron/django_print_sql/issues',
-        'Source': 'https://github.com/rabbit-aaron/django_print_sql',
-    },
 )
