@@ -1,0 +1,5 @@
+dist/
+build/
+django_print_sql.egg-info/
+__pycache__/
+*.pyc
