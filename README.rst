@@ -4,6 +4,14 @@ django-print-sql
 django-print-sql is an easy-to-use SQL debug tool for Django developers to print SQL statements
 
 
+What's new
+----------
+
+**2018.3.6**
+
+* Added a decorator
+* It now prints how long it takes each query to execute, as well as the total time elapsed
+
 Requirements
 ------------
 
@@ -38,7 +46,7 @@ Install sqlparse to pretty print the statements::
 
 Usage
 -----
-Example::
+Example 1. Use as context manager::
 
   from django_print_sql import print_sql
   
@@ -52,6 +60,14 @@ Example::
     for user in User.objects.all()[:10]:
         user.groups.first()
 
+Example 2. Use as decorator::
+
+  from django_print_sql import print_sql_decorator
+
+
+    @print_sql_decorator(count_only=False)  # this works on class-based views as well
+    def get(request):
+        # your view code here
 
 Links
 -----
