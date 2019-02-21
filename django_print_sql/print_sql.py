@@ -2,6 +2,8 @@ import time
 from django.db.models.sql.compiler import SQLCompiler
 from functools import wraps
 from contextlib import contextmanager
+import logging
+logger = logging.getLogger(__name__)
 
 try:
     import sqlparse
@@ -18,7 +20,7 @@ except ImportError:
 
 def pprint_sql(query):
     statement = query[0] % query[1]
-    print(sqlparse.format(statement, reindent=True, keyword_case='upper'))
+    logger.debug(sqlparse.format(statement, reindent=True, keyword_case='upper'))
 
 
 original_execute_sql = SQLCompiler.execute_sql
@@ -38,7 +40,7 @@ def print_sql(count_only=False):
         shared_var['total_time'] += time_elapsed
         if not count_only:
             pprint_sql(self.as_sql())
-            print('[Time elapsed: {time:.2f}ms]\n'.format(time=time_elapsed * 1000))
+            logger.debug('[Time elapsed: {time:.2f}ms]\n'.format(time=time_elapsed * 1000))
         return ret
 
     # monkey patching the SQLCompiler
@@ -49,7 +51,7 @@ def print_sql(count_only=False):
     # restore original execute_sql
     SQLCompiler.execute_sql = original_execute_sql
 
-    print('[{num_of_queries} {query_word} executed, total time elapsed {time:.2f}ms]\n'.format(
+    logger.debug('[{num_of_queries} {query_word} executed, total time elapsed {time:.2f}ms]\n'.format(
         num_of_queries=shared_var['count'],
         query_word='query' if shared_var['count'] == 1 else 'queries',
         time=shared_var['total_time'] * 1000
